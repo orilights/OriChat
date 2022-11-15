@@ -1,14 +1,10 @@
 <template>
-    <div class="relative overflow-hidden">
-        <div ref="messageContainer" class="border h-80 w-96 p-2 overflow-y-auto">
-            <div v-for="msg in curRoomMessageList" class="flex flex-row mb-2">
-                <img :src="msg.user.avatar" class="w-8 h-8 rounded-sm mr-2">
-                <div>
-                    <p class="text-xs">{{ msg.user.nickname }} <span class="text-gray-400 text-2xs">{{
-                            timestampToTime(Date.parse(msg.createdAt))
-                    }}</span></p>
-                    <p class="text-sm bg-white rounded-md rounded-tl-none px-2 py-1">{{ msg.text }}</p>
-                </div>
+    <div class="relative px-2">
+        <div ref="messageContainer" class="w-[600px] h-[450px] border p-2 overflow-y-auto">
+            <div v-for="msg in curRoomMessageList">
+                <system_notice v-if="msg.senderId==1" :msg="msg" />
+                <self_msg v-else-if="msg.senderId == Number(store.userId)" :msg="msg" />
+                <other_msg v-else :msg="msg" />
             </div>
         </div>
         <div v-if="hasNewMessage" class="absolute top-0 left-0 right-4 bg-blue-200 bg-opacity-80"
@@ -18,8 +14,10 @@
 
 <script setup lang="ts">
 import { useStore } from '@/stores';
-import { timestampToTime } from '@/utils/time';
 import { nextTick, onMounted, ref, toRefs, watch } from 'vue';
+import system_notice from './system_notice.vue' 
+import self_msg from './self_msg.vue' 
+import other_msg from './other_msg.vue' 
 
 const store = useStore()
 

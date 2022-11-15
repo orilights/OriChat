@@ -1,5 +1,5 @@
 <template>
-    <div class="border h-10">{{ roomTitle }}</div>
+    <div class="border h-10 ml-2">{{ roomTitle }}</div>
 </template>
 
 <script setup lang="ts">

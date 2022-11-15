@@ -8,14 +8,14 @@
                     <MessageList />
                     <MessagePanel />
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col w-[250px] pl-2">
                     <ChatroomNotice />
                     <MemberList />
                 </div>
             </div>
         </div>
     </div>
-    <button @click="clearLoginState(); router.push('/login')">logout</button>
+
 </template>
 
 <script setup lang="ts">
@@ -52,6 +52,7 @@ onMounted(async () => {
 onBeforeUnmount(() => {
     bus.off('sendMessage', sendMessage)
     bus.off('switchRoom', switchRoom)
+    bus.off('logout', logout);
     socket.close()
 })
 
@@ -105,6 +106,7 @@ async function getMessageHistory() {
 function initBus() {
     bus.on('sendMessage', sendMessage)
     bus.on('switchRoom', switchRoom)
+    bus.on('logout', logout)
 }
 
 function initSocket() {
@@ -190,6 +192,11 @@ function switchRoom(room_id: string): void {
     socket.emit('switchRoom', {
         room_id
     })
+}
+
+function logout(): void {
+    clearLoginState();
+    router.push('/login');
 }
 
 </script>

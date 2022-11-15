@@ -1,7 +1,7 @@
 <template>
-    <div class="border w-48 p-2">
-        <p>当前在线：{{ onlineUser }}人</p>
-        <div class="overflow-y-auto bg-gray-100 bg-opacity-60 rounded-md h-72">
+    <div class="border w-full">
+        <p class="my-2">当前在线：{{ onlineUser }}人</p>
+        <div class="h-[420px] overflow-y-auto bg-gray-100 bg-opacity-60 rounded-md">
             <div class="px-1 hover:bg-blue-100 " v-for="member in curRoomMemberList">{{ member.nickname }}({{ member.id
             }})</div>
         </div>

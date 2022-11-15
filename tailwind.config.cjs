@@ -8,7 +8,11 @@ module.exports = {
     fontSize: {
       '2xs': '0.6rem'
     },
+    container: {
+      center: true,
+    },
     extend: {},
+    
 
   },
   plugins: [],
