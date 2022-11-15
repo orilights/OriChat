@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row">
+    <div class="flex flex-row select-none">
         <ChatroomList />
         <div class="flex flex-col">
             <ChatHeader />
@@ -118,7 +118,7 @@ function initSocket() {
     });
 
     socket.on("connect", () => {
-        console.log('connect', socket.id, socket.connected);
+        console.log('[WS]建立连接', socket.id, socket.connected);
     });
 
     socket.on("disconnect", (reason: string) => {
@@ -140,41 +140,40 @@ function initSocket() {
     });
 
     socket.on('updateRoomInfo', (room_id: string) => {
-        console.log('[WS]更新房间信息');
+        console.log('[WS]更新房间信息：' + room_id);
         store.curRoomId = Number(room_id)
         getRoomInfo()
         getMessageHistory()
     })
 
     socket.on('updateRoomList', (roomList: string) => {
-        console.log('[WS]更新房间列表');
+        console.log('[WS]更新房间列表：' + roomList);
         store.roomList = JSON.parse(roomList)
     })
 
     socket.on("updateMemberList", (message: string) => {
-        console.log('[WS]更新房间成员列表');
-        console.log('updateMemberList', socket.id, message);
+        console.log('[WS]更新房间成员列表：' + message);
         const data = JSON.parse(message)
         store.curRoomMemberList = data
     });
 
     socket.on('success', (message: string) => {
-        console.log('[WS]收到通知 success: ');
+        console.log('[WS]收到通知 success: ' + message);
         toast.success(message)
     })
 
     socket.on('info', (message: string) => {
-        console.log('[WS]收到通知 info: ');
+        console.log('[WS]收到通知 info: ' + message);
         toast.info(message)
     })
 
     socket.on('warning', (message: string) => {
-        console.log('[WS]收到通知 warning: ');
+        console.log('[WS]收到通知 warning: ' + message);
         toast.warning(message)
     })
 
     socket.on('error', (message: string) => {
-        console.log('[WS]收到通知 error: ');
+        console.log('[WS]收到通知 error: ' + message);
         toast.error(message)
     })
 }
@@ -188,7 +187,6 @@ function sendMessage(message: string = ''): void {
 }
 
 function switchRoom(room_id: string): void {
-    console.log('object', room_id);
     socket.emit('switchRoom', {
         room_id
     })

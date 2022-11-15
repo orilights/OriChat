@@ -3,6 +3,11 @@ export interface RequestResult {
     msg: string
 }
 
+export interface RoomInfoSimple {
+    id: string,
+    title: string,
+}
+
 export interface RoomInfo {
     id: number,
     ownerId: number,

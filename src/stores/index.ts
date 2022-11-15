@@ -1,4 +1,4 @@
-import { Message, RoomInfo, RoomMember } from '@/core/types'
+import { Message, RoomInfo, RoomInfoSimple, RoomMember } from '@/core/types'
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('main', {
@@ -18,7 +18,7 @@ export const useStore = defineStore('main', {
         userSign: '加载中',
 
         // 全局信息
-        roomList: ['room_1'],
+        roomList: [] as RoomInfoSimple[],
 
         // 当前房间信息
         curRoomId: 1,

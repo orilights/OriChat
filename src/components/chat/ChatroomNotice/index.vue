@@ -1,7 +1,7 @@
 <template>
     <div class="border h-[150px]">
-        <p>房间公告</p>
-        <div class="text-sm p-2 h-[130px] bg-gray-100 bg-opacity-60 rounded-md">
+        <p class="text-lg font-bold">房间公告</p>
+        <div class="text-sm p-2 h-[120px] bg-gray-100 bg-opacity-60 rounded-md shadow-sm select-text">
             <p>{{ notice }}</p>
         </div>
     </div>

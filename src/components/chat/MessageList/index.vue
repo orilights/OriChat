@@ -1,8 +1,9 @@
 <template>
     <div class="relative px-2">
-        <div ref="messageContainer" class="w-[600px] h-[450px] border p-2 overflow-y-auto">
+        <div ref="messageContainer"
+            class="w-[600px] h-[450px] border p-2 pr-3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400 scrollbar-track-gray-100 scrollbar-track-rounded-md scrollbar-thumb-rounded-md">
             <div v-for="msg in curRoomMessageList">
-                <system_notice v-if="msg.senderId==1" :msg="msg" />
+                <system_notice v-if="msg.senderId == 1" :msg="msg" />
                 <self_msg v-else-if="msg.senderId == Number(store.userId)" :msg="msg" />
                 <other_msg v-else :msg="msg" />
             </div>
@@ -15,9 +16,9 @@
 <script setup lang="ts">
 import { useStore } from '@/stores';
 import { nextTick, onMounted, ref, toRefs, watch } from 'vue';
-import system_notice from './system_notice.vue' 
-import self_msg from './self_msg.vue' 
-import other_msg from './other_msg.vue' 
+import system_notice from './system_notice.vue'
+import self_msg from './self_msg.vue'
+import other_msg from './other_msg.vue'
 
 const store = useStore()
 
