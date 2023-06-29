@@ -15,6 +15,7 @@
             </div>
         </div>
     </div>
+    <UserInfoUpdate />
 
 </template>
 
@@ -34,6 +35,7 @@ import router from '@/router'
 import io from 'socket.io-client'
 import bus from '@/core/bus'
 import { useToast } from 'vue-toastification'
+import UserInfoUpdate from '@/components/popup/UserInfoUpdate.vue'
 
 const store = useStore()
 const toast = useToast()

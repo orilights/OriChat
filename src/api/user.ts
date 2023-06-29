@@ -18,3 +18,7 @@ export function verify(token: string): Promise<RequestResult> {
 export function info(id: string): Promise<RequestResult> {
     return get(apiBase + '/info?id=' + id)
 }
+
+export function update(token: string, nickname: string, email: string, sex: number, avatar: string, sign: string): Promise<RequestResult> {
+    return post(apiBase + '/update', { token, nickname, email, sex, avatar, sign })
+}
